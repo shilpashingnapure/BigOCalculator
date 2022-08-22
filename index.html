@@ -1,0 +1,52 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css"/>
+    <title>Document</title>
+</head>
+<body>
+    <h1>Welcome To Big O Calculator !!!</h1>
+    <div id="container">
+        <div id="lines_div">
+            <div>1</div>
+        </div>
+        <div>
+            <textarea id="code" placeholder="write your code....."></textarea>
+        </div>
+    </div>
+
+    <button onclick="getcode()" class="btn">Get Big O!</button>
+</body>
+</html>
+
+<script>
+    var input = document.getElementById("code");
+    let line = 1
+   input.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") {
+        line += 1
+        let d = document.createElement("div")
+        d.innerText = line
+        document.querySelector("#lines_div").append(d)
+
+    }else if(e.key === "Backspace"){
+        let lines = document.querySelector("#lines_div")
+        if(lines.lastChild.textContent != "1"){
+            lines.removeChild(lines.lastChild)
+            line -=1
+        }
+
+
+    }
+
+  });
+</script>
+
+
+<script src="index.js">
+
+
+
+</script>
