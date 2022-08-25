@@ -45,7 +45,7 @@ function breakIntoTheStatement(code){
     return BigO
 
 }
-
+let checkofLog = false
 function finalequation(allUnits){
     let i = 0
     let final = ""
@@ -63,6 +63,10 @@ function finalequation(allUnits){
 
     }
     if(final == "") final = 1
+    if(checkofLog){
+        checkofLog=false
+        return "O(log" + final +")"
+    }
     return "O(" + final + ")"
 }
 
@@ -120,6 +124,12 @@ function getTheCode(code){
 
         //checkfor FOR loop
         if(code[i].includes("for") || code[i].includes("while")){
+
+            //check if its present or not ["/=","*="]
+            if(code[i].includes("/=") || code[i].includes("*=")){
+                console.log(code[i])
+                checkofLog = true
+            }
 
             //check for charcter Like "N"
             let start = checkChar(code[i])
