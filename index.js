@@ -5,8 +5,12 @@ let Oprators = [">","<" , "==" , ">=" , "<=" , "!=" , "===" , "!==" , "+","-","/
 function getcode(){
     let code = document.querySelector("#code").value
     code = code.split("\n")
-    let getStatement = breakIntoTheStatement(code)
-    console.log(getStatement)
+    let res = breakIntoTheStatement(code)
+
+
+    document.querySelector("#output > h1:last-child").innerText = res;
+    let tag = document.querySelector("#res_container")
+    tag.classList.toggle("show_res_container")
 
 }
 
@@ -110,6 +114,7 @@ function getTheCode(code){
     for(let i = 0 ; i < code.length;i++){
 
         //check Oprators for each statment
+        code[i] = code[i].replaceAll(" " , "")
         let countOprators = checkOp(code[i])
         ans.push(countOprators)
 
@@ -119,10 +124,16 @@ function getTheCode(code){
             //check for charcter Like "N"
             let start = checkChar(code[i])
             let end = code[i].lastIndexOf(";")
+
             let res = code[i].slice(start, end).trim()
+            if(res == "0"){
+                    end = code[i].indexOf(";")
+                    res = code[i].slice(end-1 , end).trim()
+            }
             if(res){
                 ans.push(res)
             }
+
 
 
 
@@ -140,10 +151,14 @@ function checkChar(str){
         return "N"
     }else{
 
-        for(let i = 0 ; i < str.length ; i++){
-            if([">","<",">=","<="].includes(str[i])){
-                return i+1
-            }
+        if(str.includes("<=")){
+            return str.indexOf("<=") + 2
+        }else if(str.includes(">=")){
+            return str.indexOf(">=") + 2
+        }else if(str.includes(">")){
+            return str.indexOf(">") + 1
+        }else if(str.includes("<")){
+            return str.indexOf("<") + 1
         }
 
     }
@@ -161,5 +176,3 @@ function checkOp(str){
     }
     return c
 }
-
-

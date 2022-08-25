@@ -18,10 +18,25 @@
     </div>
 
     <button onclick="getcode()" class="btn">Get Big O!</button>
+    <div id="res_container">
+        <div id="output">
+            <h1>Result</h1>
+            <h1></h1>
+        </div>
+        <span onclick="getclose()">
+            <img src="https://flyclipart.com/thumb2/cancel-close-cross-decline-no-icon-674450.png" width="40px" height="40px">
+        </span>
+    </div>
 </body>
 </html>
 
 <script>
+    function getclose(){
+        let tag = document.querySelector("#res_container")
+        tag.classList.remove("show_res_container")
+    }
+
+
     var input = document.getElementById("code");
     let line = 1
    input.addEventListener("keydown", function (e) {
